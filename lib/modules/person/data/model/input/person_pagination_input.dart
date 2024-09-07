@@ -9,6 +9,13 @@ class PersonPaginationInput extends Equatable {
   final int quantity;
   final int seed;
 
+  Map<String, dynamic> toJson() {
+    return {
+      'quantity': quantity,
+      'seed': seed,
+    };
+  }
+
   @override
   List<Object?> get props => [quantity, seed];
 }

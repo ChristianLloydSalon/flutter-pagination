@@ -13,7 +13,8 @@ class PersonRemoteSource {
     required PersonPaginationInput input,
   }) async {
     final response = await _httpClient.get(
-      '$_path?quantity=${input.quantity}&seed=${input.seed}',
+      _path,
+      queryParameters: input.toJson(),
     );
     final data = response.data['data'] as List;
     return data.map((e) => Person.fromJson(e)).toList();
