@@ -1,9 +1,15 @@
 import 'package:exam/common/bloc/theme_bloc.dart';
+import 'package:exam/common/core/app_bloc_observer.dart';
 import 'package:exam/common/theme/extension/app_theme_extension.dart';
+import 'package:exam/modules/person/data/di/person_service_locator.dart';
+import 'package:exam/modules/person/presentation/bloc/person_list_bloc.dart';
+import 'package:exam/modules/person/presentation/event/person_list_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
+  Bloc.observer = AppBlocObserver();
+
   runApp(const Main());
 }
 
@@ -16,6 +22,9 @@ class Main extends StatelessWidget {
       providers: [
         BlocProvider<ThemeBloc>(
           create: (_) => ThemeBloc(),
+        ),
+        BlocProvider<PersonListBloc>(
+          create: (_) => PersonListBloc(personRepository),
         ),
       ],
       child: BlocBuilder<ThemeBloc, AppThemeMode>(
@@ -66,7 +75,7 @@ class MainApp extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                context.read<ThemeBloc>().toggle();
+                context.read<PersonListBloc>().add(const PersonListRequested());
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: context.colors.secondary,
