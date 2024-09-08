@@ -76,7 +76,9 @@ class _PersonGridViewCard extends PersonCard {
               ),
               Text(
                 state.email,
-                style: context.textStyle.label1,
+                style: context.textStyle.label1.copyWith(
+                  color: context.colors.interactive,
+                ),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
               ),
@@ -107,13 +109,15 @@ class _PersonListViewCard extends PersonCard {
       ),
       title: Text(
         state.name,
-        style: context.textStyle.body1,
+        style: context.textStyle.body3,
         overflow: TextOverflow.ellipsis,
         maxLines: 1,
       ),
       subtitle: Text(
         state.email,
-        style: context.textStyle.body2,
+        style: context.textStyle.body2.copyWith(
+          color: context.colors.interactive,
+        ),
         overflow: TextOverflow.ellipsis,
         maxLines: 1,
       ),

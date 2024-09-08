@@ -17,14 +17,14 @@ class ThemeModeSwitch extends StatelessWidget {
           second: AppThemeMode.dark,
           firstIcon: Icon(
             Icons.wb_sunny,
-            color: context.colors.primary,
+            color: context.colors.backgroundTertiary,
           ),
-          firstColor: context.colors.primary,
+          firstColor: context.colors.backgroundTertiary,
           secondIcon: Icon(
             Icons.nightlight_round,
-            color: context.colors.primary,
+            color: context.colors.backgroundTertiary,
           ),
-          secondColor: context.colors.primary,
+          secondColor: context.colors.backgroundTertiary,
           onTap: (properties) {
             context.read<ThemeBloc>().toggle();
           },

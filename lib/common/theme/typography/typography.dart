@@ -1,3 +1,4 @@
+import 'package:exam/common/theme/color/color.dart';
 import 'package:flutter/material.dart';
 
 class AppTextStyle extends ThemeExtension<AppTextStyle> {
@@ -103,112 +104,264 @@ class AppTextStyle extends ThemeExtension<AppTextStyle> {
     );
   }
 
-  factory AppTextStyle.preset() {
-    return const AppTextStyle(
+  factory AppTextStyle.dark() {
+    return AppTextStyle(
       label1: TextStyle(
         fontFamily: _fontFamily,
         fontSize: 12,
         fontWeight: FontWeight.w400,
+        color: AppColor.dark().fontSecondary,
       ),
       label2: TextStyle(
         fontFamily: _fontFamily,
         fontSize: 14,
         fontWeight: FontWeight.w400,
+        color: AppColor.dark().fontSecondary,
       ),
       label3: TextStyle(
         fontFamily: _fontFamily,
         fontSize: 16,
         fontWeight: FontWeight.w400,
+        color: AppColor.dark().fontSecondary,
       ),
       body1: TextStyle(
         fontFamily: _fontFamily,
         fontSize: 12,
         fontWeight: FontWeight.w400,
+        color: AppColor.dark().fontPrimary,
       ),
       body2: TextStyle(
         fontFamily: _fontFamily,
         fontSize: 14,
         fontWeight: FontWeight.w400,
+        color: AppColor.dark().fontPrimary,
       ),
       body3: TextStyle(
         fontFamily: _fontFamily,
         fontSize: 16,
         fontWeight: FontWeight.w400,
+        color: AppColor.dark().fontPrimary,
       ),
       body4: TextStyle(
         fontFamily: _fontFamily,
         fontSize: 18,
         fontWeight: FontWeight.w400,
+        color: AppColor.dark().fontPrimary,
       ),
       smallText1: TextStyle(
         fontFamily: _fontFamily,
         fontSize: 12,
         fontWeight: FontWeight.w400,
+        color: AppColor.dark().fontTertiary,
       ),
       smallText2: TextStyle(
         fontFamily: _fontFamily,
         fontSize: 14,
         fontWeight: FontWeight.w400,
+        color: AppColor.dark().fontTertiary,
       ),
       smallText3: TextStyle(
         fontFamily: _fontFamily,
         fontSize: 16,
         fontWeight: FontWeight.w400,
+        color: AppColor.dark().fontTertiary,
       ),
       smallText4: TextStyle(
         fontFamily: _fontFamily,
         fontSize: 18,
         fontWeight: FontWeight.w400,
+        color: AppColor.dark().fontTertiary,
       ),
       headline1: TextStyle(
         fontFamily: _fontFamily,
         fontSize: 24,
         fontWeight: FontWeight.w400,
+        color: AppColor.dark().fontPrimary,
       ),
       headline2: TextStyle(
         fontFamily: _fontFamily,
         fontSize: 28,
         fontWeight: FontWeight.w400,
+        color: AppColor.dark().fontPrimary,
       ),
       headline3: TextStyle(
         fontFamily: _fontFamily,
         fontSize: 32,
         fontWeight: FontWeight.w400,
+        color: AppColor.dark().fontPrimary,
       ),
       title1: TextStyle(
         fontFamily: _fontFamily,
         fontSize: 18,
         fontWeight: FontWeight.w400,
+        color: AppColor.dark().fontPrimary,
       ),
       title2: TextStyle(
         fontFamily: _fontFamily,
         fontSize: 20,
         fontWeight: FontWeight.w400,
+        color: AppColor.dark().fontPrimary,
       ),
       title3: TextStyle(
         fontFamily: _fontFamily,
         fontSize: 22,
         fontWeight: FontWeight.w400,
+        color: AppColor.dark().fontPrimary,
       ),
       subtitle1: TextStyle(
         fontFamily: _fontFamily,
         fontSize: 16,
         fontWeight: FontWeight.w400,
+        color: AppColor.dark().fontPrimary,
       ),
       subtitle2: TextStyle(
         fontFamily: _fontFamily,
         fontSize: 18,
         fontWeight: FontWeight.w400,
+        color: AppColor.dark().fontPrimary,
       ),
       subtitle3: TextStyle(
         fontFamily: _fontFamily,
         fontSize: 20,
         fontWeight: FontWeight.w400,
+        color: AppColor.dark().fontPrimary,
       ),
       subtitle4: TextStyle(
         fontFamily: _fontFamily,
         fontSize: 22,
         fontWeight: FontWeight.w400,
+        color: AppColor.dark().fontPrimary,
+      ),
+    );
+  }
+
+  factory AppTextStyle.light() {
+    return AppTextStyle(
+      label1: TextStyle(
+        fontFamily: _fontFamily,
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: AppColor.light().fontSecondary,
+      ),
+      label2: TextStyle(
+        fontFamily: _fontFamily,
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: AppColor.light().fontSecondary,
+      ),
+      label3: TextStyle(
+        fontFamily: _fontFamily,
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        color: AppColor.light().fontSecondary,
+      ),
+      body1: TextStyle(
+        fontFamily: _fontFamily,
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: AppColor.light().fontPrimary,
+      ),
+      body2: TextStyle(
+        fontFamily: _fontFamily,
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: AppColor.light().fontPrimary,
+      ),
+      body3: TextStyle(
+        fontFamily: _fontFamily,
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        color: AppColor.light().fontPrimary,
+      ),
+      body4: TextStyle(
+        fontFamily: _fontFamily,
+        fontSize: 18,
+        fontWeight: FontWeight.w400,
+        color: AppColor.light().fontPrimary,
+      ),
+      smallText1: TextStyle(
+        fontFamily: _fontFamily,
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: AppColor.light().fontTertiary,
+      ),
+      smallText2: TextStyle(
+        fontFamily: _fontFamily,
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: AppColor.light().fontTertiary,
+      ),
+      smallText3: TextStyle(
+        fontFamily: _fontFamily,
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        color: AppColor.light().fontTertiary,
+      ),
+      smallText4: TextStyle(
+        fontFamily: _fontFamily,
+        fontSize: 18,
+        fontWeight: FontWeight.w400,
+        color: AppColor.light().fontTertiary,
+      ),
+      headline1: TextStyle(
+        fontFamily: _fontFamily,
+        fontSize: 24,
+        fontWeight: FontWeight.w400,
+        color: AppColor.light().fontPrimary,
+      ),
+      headline2: TextStyle(
+        fontFamily: _fontFamily,
+        fontSize: 28,
+        fontWeight: FontWeight.w400,
+        color: AppColor.light().fontPrimary,
+      ),
+      headline3: TextStyle(
+        fontFamily: _fontFamily,
+        fontSize: 32,
+        fontWeight: FontWeight.w400,
+        color: AppColor.light().fontPrimary,
+      ),
+      title1: TextStyle(
+        fontFamily: _fontFamily,
+        fontSize: 18,
+        fontWeight: FontWeight.w400,
+        color: AppColor.light().fontPrimary,
+      ),
+      title2: TextStyle(
+        fontFamily: _fontFamily,
+        fontSize: 20,
+        fontWeight: FontWeight.w400,
+        color: AppColor.light().fontPrimary,
+      ),
+      title3: TextStyle(
+        fontFamily: _fontFamily,
+        fontSize: 22,
+        fontWeight: FontWeight.w400,
+        color: AppColor.light().fontPrimary,
+      ),
+      subtitle1: TextStyle(
+        fontFamily: _fontFamily,
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        color: AppColor.light().fontPrimary,
+      ),
+      subtitle2: TextStyle(
+        fontFamily: _fontFamily,
+        fontSize: 18,
+        fontWeight: FontWeight.w400,
+        color: AppColor.light().fontPrimary,
+      ),
+      subtitle3: TextStyle(
+        fontFamily: _fontFamily,
+        fontSize: 20,
+        fontWeight: FontWeight.w400,
+        color: AppColor.light().fontPrimary,
+      ),
+      subtitle4: TextStyle(
+        fontFamily: _fontFamily,
+        fontSize: 22,
+        fontWeight: FontWeight.w400,
+        color: AppColor.light().fontPrimary,
       ),
     );
   }

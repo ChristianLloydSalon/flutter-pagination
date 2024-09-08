@@ -13,6 +13,7 @@ class PersonAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
+      backgroundColor: context.colors.interactive,
       radius: state.radius ?? context.layout.radiusLarge,
       child: CustomNetworkImage(
         imageUrl: state.imageUrl,
