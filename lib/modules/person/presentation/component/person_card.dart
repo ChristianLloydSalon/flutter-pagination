@@ -62,6 +62,7 @@ class _PersonGridViewCard extends PersonCard {
               PersonAvatar(
                 state: PersonAvatarUiState(
                   imageUrl: state.imageUrl,
+                  radius: context.layout.radiusMedium,
                 ),
               ),
               SizedBox(height: context.layout.spacingSmall),
@@ -101,6 +102,7 @@ class _PersonListViewCard extends PersonCard {
       leading: PersonAvatar(
         state: PersonAvatarUiState(
           imageUrl: state.imageUrl,
+          radius: context.layout.radiusSmall,
         ),
       ),
       title: Text(

@@ -45,9 +45,9 @@ class AppLayout extends ThemeExtension<AppLayout> {
       spacingLarge: 24.0,
       spacingMedium: 16.0,
       spacingSmall: 8.0,
-      radiusLarge: 24.0,
-      radiusMedium: 16.0,
-      radiusSmall: 8.0,
+      radiusLarge: 40.0,
+      radiusMedium: 32.0,
+      radiusSmall: 24.0,
     );
   }
 
