@@ -44,6 +44,7 @@ dependencies:
   cached_network_image: ^3.4.1
   flutter_hooks: ^0.20.5
   stream_transform: ^2.1.0
+  animated_toggle_switch: ^0.8.3
 
 dev_dependencies:
   flutter_test:

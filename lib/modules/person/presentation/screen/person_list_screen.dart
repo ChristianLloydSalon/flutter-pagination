@@ -3,6 +3,7 @@ import 'package:exam/modules/person/data/model/output/person.dart';
 import 'package:exam/modules/person/presentation/bloc/person_list_bloc.dart';
 import 'package:exam/modules/person/presentation/component/person_grid_view.dart';
 import 'package:exam/modules/person/presentation/component/person_list_view.dart';
+import 'package:exam/modules/person/presentation/component/theme_mode_switch.dart';
 import 'package:exam/modules/person/presentation/event/person_list_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,6 +40,15 @@ class _PersonListScreenState extends State<PersonListScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Person List'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 100),
+              child: const ThemeModeSwitch(),
+            ),
+          ),
+        ],
       ),
       body: context.isMobile
           ? PersonListView(pageController: _pageController)
