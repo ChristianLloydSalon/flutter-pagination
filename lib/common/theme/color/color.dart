@@ -11,6 +11,7 @@ class AppColor extends ThemeExtension<AppColor> {
     required this.interactive,
     required this.positive,
     required this.negative,
+    required this.divider,
   });
 
   final Color backgroundPrimary;
@@ -26,6 +27,8 @@ class AppColor extends ThemeExtension<AppColor> {
   final Color positive;
   final Color negative;
 
+  final Color divider;
+
   @override
   ThemeExtension<AppColor> copyWith({
     Color? backgroundPrimary,
@@ -37,6 +40,7 @@ class AppColor extends ThemeExtension<AppColor> {
     Color? interactive,
     Color? positive,
     Color? negative,
+    Color? divider,
   }) {
     return AppColor(
       backgroundPrimary: backgroundPrimary ?? this.backgroundPrimary,
@@ -48,6 +52,7 @@ class AppColor extends ThemeExtension<AppColor> {
       interactive: interactive ?? this.interactive,
       positive: positive ?? this.positive,
       negative: negative ?? this.negative,
+      divider: divider ?? this.divider,
     );
   }
 
@@ -62,6 +67,7 @@ class AppColor extends ThemeExtension<AppColor> {
       interactive: Color(0xFF2186CC),
       positive: Color(0xFF57CC99),
       negative: Color(0xFFce4257),
+      divider: Color(0xFFE5E5E5),
     );
   }
 
@@ -76,6 +82,7 @@ class AppColor extends ThemeExtension<AppColor> {
       interactive: Color(0xFF2186CC),
       positive: Color(0xFF57CC99),
       negative: Color(0xFFce4257),
+      divider: Color(0xFF2D2D2D),
     );
   }
 
@@ -104,6 +111,7 @@ class AppColor extends ThemeExtension<AppColor> {
       interactive: Color.lerp(interactive, other.interactive, t) ?? interactive,
       positive: Color.lerp(positive, other.positive, t) ?? positive,
       negative: Color.lerp(negative, other.negative, t) ?? negative,
+      divider: Color.lerp(divider, other.divider, t) ?? divider,
     );
   }
 }

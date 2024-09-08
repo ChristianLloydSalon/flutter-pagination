@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:exam/common/helper/extension/json_extension.dart';
 import 'package:exam/modules/person/data/model/output/address.dart';
 import 'package:flutter/foundation.dart';
+import 'package:intl/intl.dart';
 
 @immutable
 class Person extends Equatable {
@@ -39,6 +40,10 @@ class Person extends Equatable {
   static const empty = Person();
 
   String get name => '$firstName $lastName';
+
+  String get formattedBirthday => DateFormat('MMMM dd, yyyy').format(
+        birthday ?? DateTime(0),
+      );
 
   final int id;
   final String firstName;

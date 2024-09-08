@@ -38,6 +38,12 @@ class Address extends Equatable {
 
   static const empty = Address();
 
+  String get location => '$street, $city, $buildingNumber';
+
+  String get postalInfo => '$zipCode, $country, $countryCode';
+
+  String get geoLocation => '$latitude, $longitude';
+
   final int id;
   final String street;
   final String streetName;
