@@ -1,6 +1,8 @@
 import 'package:exam/common/theme/extension/app_theme_extension.dart';
 import 'package:exam/modules/person/data/model/output/person.dart';
 import 'package:exam/modules/person/presentation/component/person_avatar.dart';
+import 'package:exam/modules/person/presentation/component/person_info_item.dart';
+import 'package:exam/modules/person/presentation/component/person_info_section.dart';
 import 'package:flutter/material.dart';
 
 class PersonDetailsScreen extends StatelessWidget {
@@ -14,67 +16,90 @@ class PersonDetailsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(person.name),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            PersonAvatar(
-              state: PersonAvatarUiState(
-                imageUrl: person.image,
-                radius: context.layout.radiusLarge,
+      body: SingleChildScrollView(
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 400),
+            child: Padding(
+              padding: EdgeInsets.all(context.layout.paddingMedium),
+              child: Column(
+                children: [
+                  PersonAvatar(
+                    state: PersonAvatarUiState(
+                      imageUrl: person.image,
+                      radius: context.layout.radiusLarge,
+                    ),
+                  ),
+                  SizedBox(height: context.layout.spacingMedium),
+                  Text(
+                    person.name,
+                    style: context.textStyle.headline3,
+                  ),
+                  SizedBox(height: context.layout.spacingMedium),
+                  PersonInfoSection(
+                    state: PersonInfoUiState(
+                      title: 'Contact Information',
+                      items: [
+                        PersonInfoItem(
+                          state: PersonInfoItemUiState(
+                            icon: Icons.email,
+                            value: person.email,
+                            valueColor: context.colors.interactive,
+                          ),
+                        ),
+                        PersonInfoItem(
+                          state: PersonInfoItemUiState(
+                            icon: Icons.phone,
+                            value: person.phone,
+                          ),
+                        ),
+                        PersonInfoItem(
+                          state: PersonInfoItemUiState(
+                            icon: Icons.web,
+                            value: person.website,
+                            valueColor: context.colors.interactive,
+                          ),
+                        ),
+                        // Birthday
+                        PersonInfoItem(
+                          state: PersonInfoItemUiState(
+                            icon: Icons.cake,
+                            value: person.formattedBirthday,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: context.layout.spacingMedium),
+                  PersonInfoSection(
+                    state: PersonInfoUiState(
+                      title: 'Address',
+                      items: [
+                        PersonInfoItem(
+                          state: PersonInfoItemUiState(
+                            icon: Icons.place_rounded,
+                            value: person.address.location,
+                          ),
+                        ),
+                        PersonInfoItem(
+                          state: PersonInfoItemUiState(
+                            icon: Icons.place_outlined,
+                            value: person.address.postalInfo,
+                          ),
+                        ),
+                        PersonInfoItem(
+                          state: PersonInfoItemUiState(
+                            icon: Icons.my_location_rounded,
+                            value: person.address.geoLocation,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
-            SizedBox(width: context.layout.spacingMedium),
-            Text(person.name),
-            Row(
-              children: [
-                const Icon(Icons.email),
-                SizedBox(width: context.layout.spacingSmall),
-                Text(person.email),
-              ],
-            ),
-            Row(
-              children: [
-                const Icon(Icons.web),
-                SizedBox(width: context.layout.spacingSmall),
-                Text(person.website),
-              ],
-            ),
-            Row(
-              children: [
-                const Icon(Icons.phone),
-                SizedBox(width: context.layout.spacingSmall),
-                Text(person.phone),
-              ],
-            ),
-            Row(
-              children: [
-                const Icon(Icons.cake_rounded),
-                SizedBox(width: context.layout.spacingSmall),
-                Text(person.birthday?.toString() ?? ''),
-              ],
-            ),
-            Row(
-              children: [
-                Icon(
-                  switch (person.gender) {
-                    Gender.male => Icons.male_rounded,
-                    Gender.female => Icons.female_rounded,
-                    Gender.none => Icons.person_2_rounded,
-                  },
-                ),
-                SizedBox(width: context.layout.spacingSmall),
-                Text(person.gender.name.toUpperCase()),
-              ],
-            ),
-            Row(
-              children: [
-                const Icon(Icons.location_on),
-                SizedBox(width: context.layout.spacingSmall),
-                Text(person.address.toString()),
-              ],
-            ),
-          ],
+          ),
         ),
       ),
     );

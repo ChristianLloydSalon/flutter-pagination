@@ -45,6 +45,7 @@ dependencies:
   flutter_hooks: ^0.20.5
   stream_transform: ^2.1.0
   animated_toggle_switch: ^0.8.3
+  intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:
