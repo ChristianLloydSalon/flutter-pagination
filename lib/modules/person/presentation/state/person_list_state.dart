@@ -3,16 +3,16 @@ import 'package:exam/modules/person/data/model/output/person.dart';
 
 class PersonListState extends Equatable {
   const PersonListState({
-    this.status = PersonListStatus.initial,
     this.persons = const [],
     this.page = 0,
     this.hasMore = true,
+    this.error,
   });
 
-  final PersonListStatus status;
   final List<Person> persons;
   final int page;
   final bool hasMore;
+  final Object? error;
 
   static int get quantity => 10;
 
@@ -21,16 +21,16 @@ class PersonListState extends Equatable {
   static int get pageLimit => 4;
 
   PersonListState copyWith({
-    PersonListStatus? status,
     List<Person>? persons,
     int? page,
     bool? hasMore,
+    Object? error,
   }) {
     return PersonListState(
-      status: status ?? this.status,
       persons: persons ?? this.persons,
       page: page ?? this.page,
       hasMore: hasMore ?? this.hasMore,
+      error: error,
     );
   }
 
@@ -38,29 +38,14 @@ class PersonListState extends Equatable {
   String toString() {
     return '''
       PersonListState(
-        status: $status, 
         persons: $persons, 
         page: $page, 
         hasMore: $hasMore
+        error: $error
       )
     ''';
   }
 
   @override
-  List<Object?> get props => [status, persons, page, hasMore];
-}
-
-enum PersonListStatus {
-  initial,
-  loading,
-  loaded,
-  error;
-
-  bool get isInitial => this == PersonListStatus.initial;
-
-  bool get isLoading => this == PersonListStatus.loading;
-
-  bool get isLoaded => this == PersonListStatus.loaded;
-
-  bool get isError => this == PersonListStatus.error;
+  List<Object?> get props => [persons, page, hasMore, error];
 }

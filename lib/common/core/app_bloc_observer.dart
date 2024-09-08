@@ -5,24 +5,24 @@ class AppBlocObserver extends BlocObserver with AppLogger {
   @override
   void onEvent(Bloc bloc, Object? event) {
     super.onEvent(bloc, event);
-    logDebug(event.toString());
+    // logDebug(event.toString());
   }
 
   @override
   void onChange(BlocBase bloc, Change change) {
     super.onChange(bloc, change);
-    logDebug(change.toString());
+    // logDebug(change.toString());
   }
 
   @override
   void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
     super.onError(bloc, error, stackTrace);
-    logError(error.toString(), error, stackTrace);
+    // logError(error.toString(), error, stackTrace);
   }
 
   @override
   void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
-    logInfo(transition.toString());
+    // logInfo(transition.toString());
   }
 }

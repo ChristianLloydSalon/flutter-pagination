@@ -38,6 +38,8 @@ class Person extends Equatable {
 
   static const empty = Person();
 
+  String get name => '$firstName $lastName';
+
   final int id;
   final String firstName;
   final String lastName;

@@ -1,4 +1,5 @@
 import 'package:exam/common/core/app_logger.dart';
+import 'package:exam/common/helper/event_transformer/event_transformer.dart';
 import 'package:exam/modules/person/data/model/input/person_pagination_input.dart';
 import 'package:exam/modules/person/data/repository/person_repository_interface.dart';
 import 'package:exam/modules/person/presentation/event/person_list_event.dart';
@@ -10,7 +11,7 @@ class PersonListBloc extends Bloc<PersonListEvent, PersonListState>
   PersonListBloc(this.repository)
       : super(PersonListState(page: PersonListState.initialPage)) {
     on<PersonListRefreshed>(_onPersonListRefreshed);
-    on<PersonListRequested>(_onPersonListRequested);
+    on<PersonListRequested>(_onPersonListRequested, transformer: restartable());
   }
 
   final PersonRepositoryInterface repository;
@@ -34,35 +35,24 @@ class PersonListBloc extends Bloc<PersonListEvent, PersonListState>
     required Emitter<PersonListState> emit,
   }) async {
     try {
-      if (state.page >= PersonListState.pageLimit) return;
-
-      emit(state.copyWith(status: PersonListStatus.loading));
-
-      final page = refresh ? PersonListState.initialPage : state.page;
-      final quantity = PersonListState.quantity +
-          (refresh ? 0 : PersonListState.quantity * page);
+      if (!state.hasMore) return;
 
       final persons = await repository.fetchPersons(
         input: PersonPaginationInput(
-          quantity: quantity,
-          seed: PersonListState.quantity,
+          quantity: PersonListState.quantity,
         ),
       );
 
       emit(
         state.copyWith(
-          status: PersonListStatus.loaded,
           persons: refresh ? persons : [...state.persons, ...persons],
-          page: page,
-          hasMore: state.persons.length % PersonListState.quantity == 0,
+          page: refresh ? PersonListState.initialPage : state.page + 1,
+          hasMore: refresh ? true : state.page < PersonListState.pageLimit,
         ),
       );
-
-      emit(state.copyWith(status: PersonListStatus.initial));
     } catch (error, stackTrace) {
       logError(error.toString(), error, stackTrace);
-      emit(state.copyWith(status: PersonListStatus.error));
-      emit(state.copyWith(status: PersonListStatus.initial));
+      emit(state.copyWith(error: error));
     }
   }
 }

@@ -38,6 +38,14 @@ extension AppThemeExtension on BuildContext {
           ),
         ),
       ),
+      listTileTheme: ListTileThemeData(
+        tileColor: AppColor.light().surface,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(
+            AppLayout.preset().borderRadiusMedium,
+          ),
+        ),
+      ),
     );
   }
 
@@ -63,6 +71,14 @@ extension AppThemeExtension on BuildContext {
       ),
       cardTheme: CardTheme(
         color: AppColor.dark().surface,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(
+            AppLayout.preset().borderRadiusMedium,
+          ),
+        ),
+      ),
+      listTileTheme: ListTileThemeData(
+        tileColor: AppColor.dark().surface,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
             AppLayout.preset().borderRadiusMedium,

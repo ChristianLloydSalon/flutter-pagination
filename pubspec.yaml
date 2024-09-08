@@ -41,6 +41,9 @@ dependencies:
   infinite_scroll_pagination: ^4.0.0
   equatable: ^2.0.5
   dio: ^5.7.0
+  cached_network_image: ^3.4.1
+  flutter_hooks: ^0.20.5
+  stream_transform: ^2.1.0
 
 dev_dependencies:
   flutter_test:
