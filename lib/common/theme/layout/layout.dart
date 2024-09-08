@@ -13,6 +13,9 @@ class AppLayout extends ThemeExtension<AppLayout> {
     required this.spacingLarge,
     required this.spacingMedium,
     required this.spacingSmall,
+    required this.radiusLarge,
+    required this.radiusMedium,
+    required this.radiusSmall,
   });
 
   final double paddingLarge;
@@ -27,6 +30,10 @@ class AppLayout extends ThemeExtension<AppLayout> {
   final double spacingMedium;
   final double spacingSmall;
 
+  final double radiusLarge;
+  final double radiusMedium;
+  final double radiusSmall;
+
   factory AppLayout.preset() {
     return const AppLayout(
       paddingLarge: 24.0,
@@ -38,6 +45,9 @@ class AppLayout extends ThemeExtension<AppLayout> {
       spacingLarge: 24.0,
       spacingMedium: 16.0,
       spacingSmall: 8.0,
+      radiusLarge: 24.0,
+      radiusMedium: 16.0,
+      radiusSmall: 8.0,
     );
   }
 
@@ -52,6 +62,9 @@ class AppLayout extends ThemeExtension<AppLayout> {
     double? spacingLarge,
     double? spacingMedium,
     double? spacingSmall,
+    double? radiusLarge,
+    double? radiusMedium,
+    double? radiusSmall,
   }) {
     return AppLayout(
       paddingLarge: paddingLarge ?? this.paddingLarge,
@@ -63,6 +76,9 @@ class AppLayout extends ThemeExtension<AppLayout> {
       spacingLarge: spacingLarge ?? this.spacingLarge,
       spacingMedium: spacingMedium ?? this.spacingMedium,
       spacingSmall: spacingSmall ?? this.spacingSmall,
+      radiusLarge: radiusLarge ?? this.radiusLarge,
+      radiusMedium: radiusMedium ?? this.radiusMedium,
+      radiusSmall: radiusSmall ?? this.radiusSmall,
     );
   }
 
@@ -97,6 +113,10 @@ class AppLayout extends ThemeExtension<AppLayout> {
           lerpDouble(spacingMedium, other.spacingMedium, t) ?? spacingMedium,
       spacingSmall:
           lerpDouble(spacingSmall, other.spacingSmall, t) ?? spacingSmall,
+      radiusLarge: lerpDouble(radiusLarge, other.radiusLarge, t) ?? radiusLarge,
+      radiusMedium:
+          lerpDouble(radiusMedium, other.radiusMedium, t) ?? radiusMedium,
+      radiusSmall: lerpDouble(radiusSmall, other.radiusSmall, t) ?? radiusSmall,
     );
   }
 }

@@ -5,12 +5,10 @@ enum AppThemeMode {
   light;
 
   AppThemeMode get opposite {
-    switch (this) {
-      case AppThemeMode.dark:
-        return AppThemeMode.light;
-      case AppThemeMode.light:
-        return AppThemeMode.dark;
-    }
+    return switch (this) {
+      AppThemeMode.dark => AppThemeMode.light,
+      AppThemeMode.light => AppThemeMode.dark,
+    };
   }
 
   bool get isDark => this == AppThemeMode.dark;
