@@ -13,7 +13,7 @@ class PersonAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      radius: state.size ?? context.layout.radiusLarge,
+      radius: state.radius ?? context.layout.radiusLarge,
       child: CustomNetworkImage(
         imageUrl: state.imageUrl,
       ),
@@ -24,9 +24,9 @@ class PersonAvatar extends StatelessWidget {
 class PersonAvatarUiState {
   const PersonAvatarUiState({
     required this.imageUrl,
-    this.size,
+    this.radius,
   });
 
   final String imageUrl;
-  final double? size;
+  final double? radius;
 }
