@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:exam/common/theme/extension/app_theme_extension.dart';
 import 'package:flutter/material.dart';
 
 class CustomNetworkImage extends StatelessWidget {
@@ -12,7 +13,10 @@ class CustomNetworkImage extends StatelessWidget {
       imageUrl: imageUrl,
       fit: BoxFit.cover,
       placeholder: (context, url) => const CircularProgressIndicator(),
-      errorWidget: (context, url, error) => const Icon(Icons.person_2_rounded),
+      errorWidget: (context, url, error) => Icon(
+        Icons.person_2_rounded,
+        color: context.colors.fontPrimary,
+      ),
     );
   }
 }

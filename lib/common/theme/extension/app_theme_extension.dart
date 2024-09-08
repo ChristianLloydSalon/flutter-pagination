@@ -7,7 +7,7 @@ extension AppThemeExtension on BuildContext {
   ThemeData get theme => Theme.of(this);
   AppColor get colors => theme.extension<AppColor>() ?? AppColor.dark();
   AppTextStyle get textStyle =>
-      theme.extension<AppTextStyle>() ?? AppTextStyle.preset();
+      theme.extension<AppTextStyle>() ?? AppTextStyle.dark();
   AppLayout get layout => theme.extension<AppLayout>() ?? AppLayout.preset();
 
   ThemeData get lightTheme {
@@ -15,23 +15,22 @@ extension AppThemeExtension on BuildContext {
       brightness: Brightness.light,
       extensions: <ThemeExtension<dynamic>>[
         AppColor.light(),
-        AppTextStyle.preset(),
-        AppLayout.preset(),
+        AppTextStyle.light(),
       ],
       textTheme: theme.textTheme.apply(
-        bodyColor: AppColor.light().onSurface,
-        displayColor: AppColor.light().onSurface,
+        bodyColor: AppColor.light().fontPrimary,
+        displayColor: AppColor.light().fontPrimary,
       ),
-      scaffoldBackgroundColor: AppColor.light().background,
+      scaffoldBackgroundColor: AppColor.light().backgroundPrimary,
       appBarTheme: AppBarTheme(
-        backgroundColor: AppColor.light().primary,
-        foregroundColor: AppColor.light().onPrimary,
+        backgroundColor: AppColor.light().backgroundTertiary,
+        foregroundColor: AppColor.light().fontPrimary,
         titleTextStyle: textStyle.headline1.copyWith(
-          color: AppColor.light().onPrimary,
+          color: AppColor.light().fontPrimary,
         ),
       ),
       cardTheme: CardTheme(
-        color: AppColor.light().surface,
+        color: AppColor.light().backgroundSecondary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
             AppLayout.preset().borderRadiusMedium,
@@ -39,7 +38,7 @@ extension AppThemeExtension on BuildContext {
         ),
       ),
       listTileTheme: ListTileThemeData(
-        tileColor: AppColor.light().surface,
+        tileColor: AppColor.light().backgroundSecondary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
             AppLayout.preset().borderRadiusMedium,
@@ -54,23 +53,22 @@ extension AppThemeExtension on BuildContext {
       brightness: Brightness.dark,
       extensions: <ThemeExtension<dynamic>>[
         AppColor.dark(),
-        AppTextStyle.preset(),
-        AppLayout.preset(),
+        AppTextStyle.dark(),
       ],
       textTheme: theme.textTheme.apply(
-        bodyColor: AppColor.dark().onSurface,
-        displayColor: AppColor.dark().onSurface,
+        bodyColor: AppColor.dark().fontPrimary,
+        displayColor: AppColor.dark().fontPrimary,
       ),
-      scaffoldBackgroundColor: AppColor.dark().background,
+      scaffoldBackgroundColor: AppColor.dark().backgroundPrimary,
       appBarTheme: AppBarTheme(
-        backgroundColor: AppColor.dark().primary,
-        foregroundColor: AppColor.dark().onPrimary,
+        backgroundColor: AppColor.dark().backgroundTertiary,
+        foregroundColor: AppColor.dark().fontPrimary,
         titleTextStyle: textStyle.headline1.copyWith(
-          color: AppColor.dark().onPrimary,
+          color: AppColor.dark().fontPrimary,
         ),
       ),
       cardTheme: CardTheme(
-        color: AppColor.dark().surface,
+        color: AppColor.dark().backgroundSecondary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
             AppLayout.preset().borderRadiusMedium,
@@ -78,7 +76,7 @@ extension AppThemeExtension on BuildContext {
         ),
       ),
       listTileTheme: ListTileThemeData(
-        tileColor: AppColor.dark().surface,
+        tileColor: AppColor.dark().backgroundSecondary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
             AppLayout.preset().borderRadiusMedium,
