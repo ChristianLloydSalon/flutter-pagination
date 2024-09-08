@@ -1,4 +1,5 @@
 import 'package:exam/common/theme/extension/app_theme_extension.dart';
+import 'package:exam/common/theme/layout/screen_size.dart';
 import 'package:exam/modules/person/presentation/component/person_avatar.dart';
 import 'package:flutter/material.dart';
 
@@ -69,7 +70,9 @@ class _PersonGridViewCard extends PersonCard {
               Flexible(
                 child: Text(
                   state.name,
-                  style: context.textStyle.body4,
+                  style: context.isMobile
+                      ? context.textStyle.body3
+                      : context.textStyle.body4,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                 ),
