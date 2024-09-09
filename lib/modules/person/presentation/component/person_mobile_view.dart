@@ -3,6 +3,7 @@ import 'package:exam/common/theme/extension/app_theme_extension.dart';
 import 'package:exam/modules/person/data/di/person_service_locator.dart';
 import 'package:exam/modules/person/data/model/output/person.dart';
 import 'package:exam/modules/person/presentation/bloc/person_list_bloc.dart';
+import 'package:exam/modules/person/presentation/component/no_more_items_spiel.dart';
 import 'package:exam/modules/person/presentation/component/person_card.dart';
 import 'package:exam/modules/person/presentation/event/person_list_event.dart';
 import 'package:exam/modules/person/presentation/screen/person_details_screen.dart';
@@ -76,6 +77,8 @@ class __PersonMobileViewContentState extends State<_PersonMobileViewContent> {
           separatorBuilder: (_, __) => const SizedBox(height: 8),
           padding: EdgeInsets.all(context.layout.paddingMedium),
           builderDelegate: PagedChildBuilderDelegate<Person>(
+            noMoreItemsIndicatorBuilder: (_) =>
+                const Center(child: NoMoreItemsSpiel()),
             itemBuilder: (context, person, index) {
               return PersonCard.listView(
                 key: ValueKey(person.id),
