@@ -3,6 +3,7 @@ import 'package:exam/common/theme/extension/app_theme_extension.dart';
 import 'package:exam/modules/person/data/di/person_service_locator.dart';
 import 'package:exam/modules/person/data/model/output/person.dart';
 import 'package:exam/modules/person/presentation/bloc/person_list_bloc.dart';
+import 'package:exam/modules/person/presentation/component/no_more_items_spiel.dart';
 import 'package:exam/modules/person/presentation/component/person_card.dart';
 import 'package:exam/modules/person/presentation/event/person_list_event.dart';
 import 'package:exam/modules/person/presentation/screen/person_details_screen.dart';
@@ -78,6 +79,8 @@ class _PersonWebViewContentState extends State<PersonWebViewContent> {
                 newPageProgressIndicatorBuilder: (context) {
                   return const _SeeMoreButton();
                 },
+                noMoreItemsIndicatorBuilder: (context) =>
+                    const Center(child: NoMoreItemsSpiel()),
                 itemBuilder: (context, person, index) {
                   return PersonCard.gridView(
                     state: PersonCardUiState(
