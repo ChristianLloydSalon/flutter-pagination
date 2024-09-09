@@ -1,3 +1,4 @@
+import 'package:exam/common/component/custom_refresh_indicator.dart';
 import 'package:exam/common/theme/extension/app_theme_extension.dart';
 import 'package:exam/modules/person/data/di/person_service_locator.dart';
 import 'package:exam/modules/person/data/model/output/person.dart';
@@ -48,44 +49,54 @@ class __PersonMobileViewContentState extends State<_PersonMobileViewContent> {
     super.dispose();
   }
 
+  Future<void> _onRefresh() async {
+    await Future.sync(() {
+      _pageController.refresh();
+      context.read<PersonListBloc>().add(const PersonListRefreshed());
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocListener<PersonListBloc, PersonListState>(
-      listenWhen: (previous, current) => previous.page != current.page,
-      listener: (context, state) {
-        if (state.error != null) {
-          _pageController.error = state.error;
-        } else if (!state.hasMore) {
-          _pageController.appendLastPage(state.persons);
-        } else {
-          _pageController.appendPage(state.persons, state.page);
-        }
-      },
-      child: PagedListView<int, Person>.separated(
-        pagingController: _pageController,
-        separatorBuilder: (_, __) => const SizedBox(height: 8),
-        padding: EdgeInsets.all(context.layout.paddingMedium),
-        builderDelegate: PagedChildBuilderDelegate<Person>(
-          itemBuilder: (context, person, index) {
-            return PersonCard.listView(
-              key: ValueKey(person.id),
-              state: PersonCardUiState(
-                name: person.name,
-                email: person.email,
-                imageUrl: person.image,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return PersonDetailsScreen(person: person);
-                    },
-                  ),
-                );
-              },
-            );
-          },
+    return CustomRefreshIndicator(
+      onRefresh: _onRefresh,
+      child: BlocListener<PersonListBloc, PersonListState>(
+        listener: (context, state) {
+          if (state.error != null) {
+            _pageController.error = state.error;
+          } else if (!state.hasMore) {
+            _pageController.appendLastPage(state.persons);
+          } else {
+            _pageController.appendPage(state.persons, state.page);
+          }
+        },
+        child: PagedListView<int, Person>.separated(
+          pagingController: _pageController,
+          physics: const AlwaysScrollableScrollPhysics(),
+          separatorBuilder: (_, __) => const SizedBox(height: 8),
+          padding: EdgeInsets.all(context.layout.paddingMedium),
+          builderDelegate: PagedChildBuilderDelegate<Person>(
+            itemBuilder: (context, person, index) {
+              return PersonCard.listView(
+                key: ValueKey(person.id),
+                state: PersonCardUiState(
+                  name: person.name,
+                  email: person.email,
+                  imageUrl: person.image,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return PersonDetailsScreen(person: person);
+                      },
+                    ),
+                  );
+                },
+              );
+            },
+          ),
         ),
       ),
     );
