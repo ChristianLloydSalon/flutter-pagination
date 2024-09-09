@@ -36,6 +36,21 @@ class PersonDetailsScreen extends StatelessWidget {
                     style: context.textStyle.headline3,
                   ),
                   SizedBox(height: context.layout.spacingMedium),
+                  if (!person.gender.isNone) ...[
+                    Center(
+                      child: PersonInfoItem(
+                        state: PersonInfoItemUiState(
+                          icon: switch (person.gender) {
+                            Gender.male => Icons.male_rounded,
+                            Gender.female => Icons.female_rounded,
+                            _ => Icons.person,
+                          },
+                          value: person.gender.name.toUpperCase(),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: context.layout.spacingMedium),
+                  ],
                   PersonInfoSection(
                     state: PersonInfoUiState(
                       title: 'Contact Information',

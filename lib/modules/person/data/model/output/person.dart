@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:exam/common/helper/extension/iterable_extension.dart';
 import 'package:exam/common/helper/extension/json_extension.dart';
 import 'package:exam/modules/person/data/model/output/address.dart';
 import 'package:flutter/foundation.dart';
@@ -31,6 +32,7 @@ class Person extends Equatable {
       email: json.parseString('email'),
       phone: json.parseString('phone'),
       birthday: json.parseDateTime('birthday'),
+      gender: Gender.values.byValue(json.parseString('gender')) ?? Gender.none,
       address: Address.fromJson(json.parseMap('address')),
       website: json.parseString('website'),
       image: json.parseString('image'),

@@ -4,3 +4,17 @@ extension IterableExtensions<E> on Iterable<E> {
     return map((e) => f(index++, e));
   }
 }
+
+extension EnumByValue<T extends Enum> on Iterable<T> {
+  T? byValue(String? valueToFind) {
+    if (valueToFind == null) return null;
+
+    for (final enumItem in this) {
+      if (enumItem.name.toLowerCase() == valueToFind.toLowerCase()) {
+        return enumItem;
+      }
+    }
+
+    return null;
+  }
+}
