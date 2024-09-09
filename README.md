@@ -27,4 +27,4 @@ samples, guidance on mobile development, and a full API reference.
 - Run `flutter run` to run the project in mobile.
 
 ## Sample Project Output (Web)
-- ![Flutter Faker Pagination](https://flutter-faker-pagination.web.app/)
+- https://flutter-faker-pagination.web.app
