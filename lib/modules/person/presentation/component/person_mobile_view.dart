@@ -72,7 +72,6 @@ class __PersonMobileViewContentState extends State<_PersonMobileViewContent> {
                 const Center(child: NoMoreItemsSpiel()),
             itemBuilder: (context, person, index) {
               return PersonCard.listView(
-                key: ValueKey(person.id),
                 state: PersonCardUiState(
                   name: person.name,
                   email: person.email,
