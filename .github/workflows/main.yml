@@ -1,0 +1,64 @@
+name: Flutter Faker Pagination CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - dev
+
+env:
+  FLUTTER_VERSION: 3.24.0
+
+jobs:
+  buid_production:
+    name: Build Production
+    runs-on: ubuntu-latest
+
+    env:
+      API_URL: ${{ secrets.API_URL }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+
+      - name: Setup Web Build
+        run: |
+          flutter clean
+          flutter pub get
+          sh ./scripts/create-env.sh
+          dart env.dart
+
+      - name: Build Flutter Web
+        run: flutter build web
+
+      - name: Archive production build
+        uses: actions/upload-artifact@v2
+        with:
+          name: dev-artifacts
+          path: build/web
+
+  deploy_production:
+    name: Deploy Production
+    runs-on: ubuntu-latest
+    needs: [build_production]
+
+    steps:
+      - name: Download Dev Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: dev-artifacts
+          path: build/web
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Deploy to Production Firebase Hosting
+        run: firebase deploy -m "Flutter Faker Pagination Production Deployment" --token ${{ secrets.FIREBASE_TOKEN }} --debug
