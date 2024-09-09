@@ -20,6 +20,9 @@ samples, guidance on mobile development, and a full API reference.
 - Set the `API_URL` variable in the `.env` file to `https://fakerapi.it/api/v2`.
 - Run `dart env.dart` to create a `lib/config/environment.dart` file.
 
+## Flutter Version
+- v3.24.0
+
 ## Run project (Web)
 - Run `flutter run --web-port 3000` to run the project in port 3000.
 
