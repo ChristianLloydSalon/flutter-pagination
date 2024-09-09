@@ -62,4 +62,4 @@ jobs:
         run: npm install -g firebase-tools
 
       - name: Deploy to Production Firebase Hosting
-        run: firebase deploy -m "Flutter Faker Pagination Production Deployment" --project default --token ${{ secrets.FIREBASE_TOKEN }} --debug
+        run: firebase deploy -m --token ${{ secrets.FIREBASE_TOKEN }} --debug
