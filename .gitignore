@@ -49,3 +49,6 @@ app.*.map.json
 # Environment configuration
 .env
 lib/config/environment.dart
+
+# Firebase
+.firebase/
