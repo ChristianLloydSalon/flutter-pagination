@@ -9,7 +9,7 @@ class PersonPaginationInput extends Equatable {
 
   Map<String, dynamic> toJson() {
     return {
-      'quantity': quantity,
+      '_quantity': quantity,
     };
   }
 
