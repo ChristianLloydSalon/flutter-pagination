@@ -5,9 +5,9 @@ import 'package:exam/modules/person/data/model/output/person.dart';
 import 'package:exam/modules/person/presentation/bloc/person_list_bloc.dart';
 import 'package:exam/modules/person/presentation/component/no_more_items_spiel.dart';
 import 'package:exam/modules/person/presentation/component/person_card.dart';
+import 'package:exam/modules/person/presentation/component/person_list_bloc_listener.dart';
 import 'package:exam/modules/person/presentation/event/person_list_event.dart';
 import 'package:exam/modules/person/presentation/screen/person_details_screen.dart';
-import 'package:exam/modules/person/presentation/state/person_list_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -56,16 +56,8 @@ class _PersonWebViewContentState extends State<PersonWebViewContent> {
       child: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 800),
-          child: BlocListener<PersonListBloc, PersonListState>(
-            listener: (context, state) {
-              if (state.error != null) {
-                _pageController.error = state.error;
-              } else if (!state.hasMore) {
-                _pageController.appendLastPage(state.persons);
-              } else {
-                _pageController.appendPage(state.persons, state.page);
-              }
-            },
+          child: PersonListBlocListener(
+            pagingController: _pageController,
             child: PagedGridView<int, Person>(
               pagingController: _pageController,
               physics: const AlwaysScrollableScrollPhysics(),
