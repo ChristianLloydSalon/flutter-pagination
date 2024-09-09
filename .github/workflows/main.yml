@@ -36,7 +36,7 @@ jobs:
         run: flutter build web
 
       - name: Archive production build
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: dev-artifacts
           path: build/web
@@ -51,7 +51,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Download Dev Artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: dev-artifacts
           path: build/web
