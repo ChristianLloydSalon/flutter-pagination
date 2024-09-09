@@ -1,4 +1,3 @@
-import 'package:exam/common/component/custom_refresh_indicator.dart';
 import 'package:exam/common/theme/extension/app_theme_extension.dart';
 import 'package:exam/modules/person/data/di/person_service_locator.dart';
 import 'package:exam/modules/person/data/model/output/person.dart';
@@ -51,9 +50,14 @@ class _PersonWebViewContentState extends State<PersonWebViewContent> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomRefreshIndicator(
-      onRefresh: _onRefresh,
-      child: Center(
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.refresh),
+        onPressed: () async {
+          await _onRefresh();
+        },
+      ),
+      body: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 800),
           child: PersonListBlocListener(

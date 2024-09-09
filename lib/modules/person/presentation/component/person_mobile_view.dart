@@ -1,4 +1,3 @@
-import 'package:exam/common/component/custom_refresh_indicator.dart';
 import 'package:exam/common/theme/extension/app_theme_extension.dart';
 import 'package:exam/modules/person/data/di/person_service_locator.dart';
 import 'package:exam/modules/person/data/model/output/person.dart';
@@ -59,7 +58,7 @@ class __PersonMobileViewContentState extends State<_PersonMobileViewContent> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomRefreshIndicator(
+    return RefreshIndicator(
       onRefresh: _onRefresh,
       child: PersonListBlocListener(
         pagingController: _pageController,
