@@ -14,7 +14,7 @@ class PersonListState extends Equatable {
   final bool hasMore;
   final Object? error;
 
-  static int get quantity => 10;
+  static int get quantity => 20;
 
   static int get initialPage => 1;
 

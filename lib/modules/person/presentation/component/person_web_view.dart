@@ -1,3 +1,4 @@
+import 'package:exam/common/component/custom_refresh_indicator.dart';
 import 'package:exam/common/theme/extension/app_theme_extension.dart';
 import 'package:exam/modules/person/data/di/person_service_locator.dart';
 import 'package:exam/modules/person/data/model/output/person.dart';
@@ -10,21 +11,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-class PersonWebView extends StatefulWidget {
+class PersonWebView extends StatelessWidget {
   const PersonWebView({super.key});
 
   @override
-  State<PersonWebView> createState() => _PersonWebViewState();
+  Widget build(BuildContext context) {
+    return BlocProvider<PersonListBloc>(
+      create: (_) =>
+          PersonListBloc(personRepository)..add(const PersonListRequested()),
+      child: const PersonWebViewContent(),
+    );
+  }
 }
 
-class _PersonWebViewState extends State<PersonWebView> {
-  final PagingController<int, Person> _pageController =
-      PagingController(firstPageKey: 1);
+class PersonWebViewContent extends StatefulWidget {
+  const PersonWebViewContent({super.key});
 
   @override
-  void initState() {
-    super.initState();
-  }
+  State<PersonWebViewContent> createState() => _PersonWebViewContentState();
+}
+
+class _PersonWebViewContentState extends State<PersonWebViewContent> {
+  final PagingController<int, Person> _pageController =
+      PagingController(firstPageKey: 1);
 
   @override
   void dispose() {
@@ -32,11 +41,17 @@ class _PersonWebViewState extends State<PersonWebView> {
     super.dispose();
   }
 
+  Future<void> _onRefresh() async {
+    await Future.sync(() {
+      _pageController.refresh();
+      context.read<PersonListBloc>().add(const PersonListRefreshed());
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<PersonListBloc>(
-      create: (_) =>
-          PersonListBloc(personRepository)..add(const PersonListRequested()),
+    return CustomRefreshIndicator(
+      onRefresh: _onRefresh,
       child: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 800),
@@ -50,8 +65,9 @@ class _PersonWebViewState extends State<PersonWebView> {
                 _pageController.appendPage(state.persons, state.page);
               }
             },
-            child: PagedGridView(
+            child: PagedGridView<int, Person>(
               pagingController: _pageController,
+              physics: const AlwaysScrollableScrollPhysics(),
               padding: EdgeInsets.all(context.layout.paddingMedium),
               gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 200,

@@ -5,7 +5,7 @@ class AppBlocObserver extends BlocObserver with AppLogger {
   @override
   void onEvent(Bloc bloc, Object? event) {
     super.onEvent(bloc, event);
-    // logDebug(event.toString());
+    logDebug(event.toString());
   }
 
   @override

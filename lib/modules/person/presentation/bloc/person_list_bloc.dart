@@ -10,7 +10,7 @@ class PersonListBloc extends Bloc<PersonListEvent, PersonListState>
     with AppLogger {
   PersonListBloc(this.repository)
       : super(PersonListState(page: PersonListState.initialPage)) {
-    on<PersonListRefreshed>(_onPersonListRefreshed);
+    on<PersonListRefreshed>(_onPersonListRefreshed, transformer: restartable());
     on<PersonListRequested>(_onPersonListRequested, transformer: restartable());
   }
 
@@ -35,8 +35,6 @@ class PersonListBloc extends Bloc<PersonListEvent, PersonListState>
     required Emitter<PersonListState> emit,
   }) async {
     try {
-      if (!state.hasMore) return;
-
       final persons = await repository.fetchPersons(
         input: PersonPaginationInput(
           quantity: PersonListState.quantity,
