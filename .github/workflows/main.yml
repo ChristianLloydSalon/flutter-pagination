@@ -14,7 +14,7 @@ env:
   FLUTTER_VERSION: 3.24.0
 
 jobs:
-  buid_production:
+  build_production:
     name: Build Production
     runs-on: ubuntu-latest
     if : github.ref == 'refs/heads/chore/add-github-workflow'
